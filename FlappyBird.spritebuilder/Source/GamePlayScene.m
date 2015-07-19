@@ -9,12 +9,22 @@
     // your code here
     character = (Character*)[CCBReader load:@"Character"];
     [physicsNode addChild:character];
-    [self addObstacle];	
+    [self addObstacle];
+    timesinceLastObsticle = 0.0F;
+    
 }
 
 -(void)update:(CCTime)delta
 {
     // put update code here
+    
+    timesinceLastObsticle += delta;
+    
+    if(timesinceLastObsticle > 2.0F){
+        [self addObstacle];
+        
+        timesinceLastObsticle = 0.0F;
+    }
 }
 
 // put new methods here
